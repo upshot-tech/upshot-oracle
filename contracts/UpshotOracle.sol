@@ -17,6 +17,9 @@ contract UpshotOracle is Ownable2Step, IUpshotOracle {
     
     address private _authenticator;
 
+    event UpshotOracleAdminSetNonce();
+    error UpshotOracleInvalidNonce();
+
     constructor (address authenticator_) Ownable(msg.sender) {
         _setAuthenticator(authenticator_);
     }
@@ -105,6 +108,7 @@ contract UpshotOracle is Ownable2Step, IUpshotOracle {
 
     /**
      * @notice Admin function to set the nonce for the collection
+     * nonce is used to invalidate all prices for a collection at once
      * 
      * @param collection The collection to update the nonce for
      * @param nonce The new nonce
@@ -119,9 +123,10 @@ contract UpshotOracle is Ownable2Step, IUpshotOracle {
     // ***************************************************************
 
     /**
-     * @inheritdoc IUpshotOracle
+     * @notice Get current nonce by NFT collection address
+     * nonce is used to invalidate all prices for a collection at once
      */
-    function getNonce(address collection) public view override returns (uint256 nonce) {
+    function getNonce(address collection) public view returns (uint256 nonce) {
         nonce = _collectionNonce[collection];
     }
 
