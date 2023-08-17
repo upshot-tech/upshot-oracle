@@ -25,7 +25,8 @@ contract UpshotOracleUnitTests is Test {
         token: address(0xbeef),
         expiration: type(uint32).max,
         nftId: type(uint256).max,
-        price: 1
+        price: 1,
+        extraData: ""
     });
 
     function setUp() public {

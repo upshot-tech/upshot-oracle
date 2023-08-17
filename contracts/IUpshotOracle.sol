@@ -14,6 +14,7 @@ struct PriceData {
     uint96 expiration;
     uint256 nftId;
     uint256 price; 
+    bytes extraData;
 }
 
 /**
@@ -24,23 +25,16 @@ interface IUpshotOracle {
     // * ========================= EVENTS ========================== *
     // ***************************************************************
     event UpshotOracleAdminSetAuthenticator(address authenticator);
-    event UpshotOracleAdminSetNonce();
 
     // ***************************************************************
     // * ========================= ERRORS ========================== *
     // ***************************************************************
     error UpshotOracleInvalidPriceTime();
     error UpshotOracleInvalidSigner();
-    error UpshotOracleInvalidNonce();
 
     // ***************************************************************
     // * ========================== VIEW =========================== *
     // ***************************************************************
-
-    /**
-     * @dev Get current nonce by NFT collection address
-     */
-    function getNonce(address collection) external view returns (uint256 nonce);
 
     /**
      * @notice Get the address of the authenticator
