@@ -68,7 +68,8 @@ contract UpshotOracleUnitTests is Test {
             address(0xcafe),
             type(uint256).max,
             1682691526,
-            9999999999
+            9999999999,
+            ""
         );
         assertEq(correct, actual);
     }
@@ -365,7 +366,8 @@ contract UpshotOracleUnitTests is Test {
                     data.token, 
                     data.price, 
                     data.timestamp,
-                    data.expiration
+                    data.expiration,
+                    data.extraData
                 )   
             )
         );

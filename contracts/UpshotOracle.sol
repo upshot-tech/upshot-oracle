@@ -53,7 +53,8 @@ contract UpshotOracle is Ownable2Step, IUpshotOracle {
                         data.token, 
                         data.price, 
                         data.timestamp,
-                        data.expiration
+                        data.expiration,
+                        data.extraData
                     )),
                     data.signature
                 );
@@ -80,7 +81,8 @@ contract UpshotOracle is Ownable2Step, IUpshotOracle {
         address token,
         uint256 price, 
         uint96 timestamp,
-        uint96 expiration
+        uint96 expiration,
+        bytes memory extraData
     ) public view returns (bytes32) {
         return keccak256(abi.encodePacked(
             block.chainid, 
@@ -90,7 +92,8 @@ contract UpshotOracle is Ownable2Step, IUpshotOracle {
             token,
             price, 
             timestamp,
-            expiration
+            expiration,
+            extraData
         ));
     }
 
